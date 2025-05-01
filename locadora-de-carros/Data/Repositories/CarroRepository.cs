@@ -1,5 +1,6 @@
 ﻿using locadora_de_carros.Data.Repositories.Abstractions;
 using locadora_de_carros.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace locadora_de_carros.Data.Repositories
 {
@@ -27,12 +28,18 @@ namespace locadora_de_carros.Data.Repositories
         public List<CarroEntity> GetAll()
         {
             var listCarros = _context.Carros.ToList();
-            _context.SaveChanges();
 
             return listCarros;
         }
 
-        public void Update(int id, CarroEntity entity)
+        public CarroEntity GetId(int id)
+        {
+             return _context.Carros
+                                .AsNoTracking()
+                                .FirstOrDefault(p => p.Id == id);
+        }
+
+        public void Update(CarroEntity entity)
         {
             _context.Update(entity);
             _context.SaveChanges();
