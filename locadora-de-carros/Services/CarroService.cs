@@ -32,13 +32,16 @@ namespace locadora_de_carros.Services
             var carro = mapper.Map<CarroEntity>(entity);
             var carroExistente = carrosRepository.GetId(id);
 
+            carroExistente.ValorDiaria = carro.ValorDiaria;
+            carroExistente.Modelo = carro.Modelo;
+            carroExistente.Ano = carro.Ano;
+            carroExistente.Marca = carro.Marca;
+
             if (carroExistente is null) 
                     throw new CarrosException();
 
-            carro.Id = id;
-
             carrosRepository.Update(carroExistente);
-
+                                                                                                                                        
             return mapper.Map<CarroDTO>(carroExistente);
 
         }

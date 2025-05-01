@@ -1,5 +1,6 @@
 ﻿using locadora_de_carros.Application.DTO;
 using locadora_de_carros.Services.Abstractions;
+using locadora_de_carros.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace locadora_de_carros.Application.Controllers
@@ -17,45 +18,65 @@ namespace locadora_de_carros.Application.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CarroDTO>> Get()
+        public ActionResult<IEnumerable<CarroDTO>> GetAll()
         {
-            return Ok(carroService.Get());
+            return Ok(carroService.GetAll());
         }
 
-        [HttpGet("{id:int:min(1)}", Name = "GetUsuarioById")]
+        [HttpGet("{id:int:min(1)}")]
         public IActionResult GetId(int id)
         {
-            var u1 = carroService.GetId(g => g.Id == id);
+            try
+            {
+                var u1 = carroService.GetById(id);
 
-            if (u1 is null) return NotFound(u1);
+                if (u1 is null) return NotFound(u1);
 
-            return Ok(u1);
+                return Ok(u1);
+
+            }
+            catch (CarrosException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost]
-        public ActionResult<CarroDTO> Post(CarroDTO entidade)
+        public ActionResult<CarroDTO> Post([FromBody] CarroDTO entidade)
         {
             if (entidade is null) return BadRequest();
 
-            _UsuarioService.Post(entidade);
-            return new CreatedAtRouteResult("GetUsuarioById", new { id = entidade.Id }, entidade);
+            carroService.Create(entidade);
+
+            return Created();
         }
 
         [HttpPut("{id:int:min(1)}")]
         public ActionResult<CarroDTO> Put(int id, CarroDTO t)
         {
-            _UsuarioService.Put(t);
-            return Ok(t);
+            try
+            {
+                carroService.Update(id,t);
+                return Ok(t);
+            }
+            catch (CarrosException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id:int:min(1)}")]
         public ActionResult<CarroDTO> Delete(int id)
-        {
-            var u1 = carroService.GetById(id);
-            
-            if (u1 is null) return NotFound(u1);
-
-            carroService.Delete(u1);
+        {            
+            carroService.Delete(id);
 
             return Ok();
         }

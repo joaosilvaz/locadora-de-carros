@@ -4,9 +4,9 @@ using locadora_de_carros.Domain.Entities;
 
 namespace locadora_de_carros.Application.Mappers
 {
-    public class DomainMappingProfile : Profile
+    public class DomainModelMappingProfile : Profile
     {
-        public DomainMappingProfile() 
+        public DomainModelMappingProfile() 
         {
             CreateMap<CarroEntity, CarroDTO>().ReverseMap();    
         }

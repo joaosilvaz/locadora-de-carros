@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using locadora_de_carros.Domain.Entities.Pattern;
+using Microsoft.EntityFrameworkCore;
 
 namespace locadora_de_carros.Domain.Entities
 {
@@ -19,6 +20,7 @@ namespace locadora_de_carros.Domain.Entities
         public int Ano { get; set; }
 
         [Column("nr_valordiaria")]
+        [Precision(10, 2)]
         public decimal ValorDiaria { get; set; }
     }
 }

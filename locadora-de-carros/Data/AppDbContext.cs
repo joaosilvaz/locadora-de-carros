@@ -14,6 +14,10 @@ namespace locadora_de_carros.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CarroEntity>()
+                    .Property(c => c.ValorDiaria)
+                    .HasPrecision(10, 2); 
+
             base.OnModelCreating(modelBuilder);
         }
     }
