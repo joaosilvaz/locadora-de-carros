@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace locadora_de_carros.Controllers
+namespace locadora_de_carros.Application.Controllers
 {
     [ApiController]
     [Route("[controller]")]
