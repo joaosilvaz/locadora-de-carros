@@ -1,3 +1,4 @@
+using locadora_de_carros._2_Services;
 using locadora_de_carros.Application.Mappers;
 using locadora_de_carros.Data;
 using locadora_de_carros.Data.Repositories;
@@ -17,7 +18,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddAutoMapper(typeof(DomainModelMappingProfile));
 
+
 builder.Services.AddScoped<ICarrosRepository, CarroRepository>();
+
+//
+builder.Services.AddScoped<ILocacaoService,LocacaoService>();
 builder.Services.AddScoped<ICarroService, CarroService>();
 
 var app = builder.Build();

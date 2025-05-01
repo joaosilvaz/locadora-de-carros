@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 namespace locadora_de_carros._1_Application.Response
 {
-    public class LocacaoResponse
+    public class RelatorioResponse
     {
         public CarroDTO Carro { get; set; }
         public DateTime PeriodoLocacao { get; set; }
