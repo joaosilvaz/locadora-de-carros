@@ -18,16 +18,16 @@ namespace locadora_de_carros.Services
             this.mapper = mapper;
         }
 
-        public void Create(CarroDTO entity)
+        public CarroDTO Create(CarroDTO entity)
         {
+            var carroEntity = mapper.Map<CarroEntity>(entity);
 
+            carrosRepository.Create(carroEntity);
 
-            var usuario = mapper.Map<CarroEntity>(entity);
-
-            carrosRepository.Create(usuario);
+            return mapper.Map<CarroDTO>(carroEntity);
         }
 
-        public void Update(int id, CarroDTO entity)
+        public CarroDTO Update(int id, CarroDTO entity)
         {
             var carro = mapper.Map<CarroEntity>(entity);
             var carroExistente = carrosRepository.GetId(id);
@@ -38,6 +38,8 @@ namespace locadora_de_carros.Services
             carro.Id = id;
 
             carrosRepository.Update(carroExistente);
+
+            return mapper.Map<CarroDTO>(carroExistente);
 
         }
 

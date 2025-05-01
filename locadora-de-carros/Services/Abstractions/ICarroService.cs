@@ -5,8 +5,8 @@ namespace locadora_de_carros.Services.Abstractions
 {
     public interface ICarroService
     {
-        void Create(CarroDTO entity);
-        void Update(int id, CarroDTO entity);
+        CarroDTO Create(CarroDTO entity);
+        CarroDTO Update(int id, CarroDTO entity);
         void Delete(int id);
         List<CarroDTO> GetAll();
 
