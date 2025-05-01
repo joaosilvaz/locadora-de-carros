@@ -33,13 +33,12 @@ namespace locadora_de_carros.Application.Controllers
                 if (u1 is null) return NotFound(u1);
 
                 return Ok(u1);
-
             }
             catch (CarrosException ex)
             {
                 return BadRequest(ex.Message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -60,14 +59,14 @@ namespace locadora_de_carros.Application.Controllers
         {
             try
             {
-                carroService.Update(id,t);
+                carroService.Update(id, t);
                 return Ok(t);
             }
             catch (CarrosException ex)
             {
                 return BadRequest(ex.Message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -75,7 +74,7 @@ namespace locadora_de_carros.Application.Controllers
 
         [HttpDelete("{id:int:min(1)}")]
         public ActionResult<CarroDTO> Delete(int id)
-        {            
+        {
             carroService.Delete(id);
 
             return Ok();

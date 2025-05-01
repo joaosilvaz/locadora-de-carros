@@ -9,7 +9,6 @@ namespace locadora_de_carros.Services.Abstractions
         CarroDTO Update(int id, CarroDTO entity);
         void Delete(int id);
         List<CarroDTO> GetAll();
-
         CarroDTO GetById(int id);
     }
 }

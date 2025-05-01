@@ -1,7 +1,8 @@
-﻿using locadora_de_carros._1_Application.Response;
+﻿using locadora_de_carros._1_Application.Controllers;
 using locadora_de_carros._2_Services;
-using locadora_de_carros._2_Services.Exceptions;
+using locadora_de_carros._2_Services.Parameter;
 using locadora_de_carros.Application.DTO;
+using locadora_de_carros.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace locadora_de_carros.Application.Controllers
@@ -18,18 +19,16 @@ namespace locadora_de_carros.Application.Controllers
             this.locacaoService = locacaoService;
         }
 
-
         [HttpPost("/calcular")]
-        public ActionResult<RelatorioResponse> Create([FromBody] int id,DateTime dataInicio, DateTime dataFim)
+        public ActionResult<RelatorioDTOResponse> Create([FromBody] LocacaoDTORequest locacaoBody)
         {
             try
             {
-              RelatorioResponse relatorioResponse =  locacaoService.Calcular(new CarroDTO());
-              return relatorioResponse;
-            }
-            catch (LocacaoException ex)
+                RelatorioDTOResponse relatorioResponse = locacaoService.Calcular(locacaoBody);
+                return relatorioResponse;
+            }catch(CarrosException ex)
             {
-                return BadRequest(ex.Message);  
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {

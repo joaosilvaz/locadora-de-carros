@@ -1,3 +1,4 @@
+using System.Text.Json;
 using locadora_de_carros._2_Services;
 using locadora_de_carros.Application.Mappers;
 using locadora_de_carros.Data;
@@ -9,7 +10,12 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+//Configurando o Json para ser CamelCase
+builder.Services.AddControllers().AddJsonOptions(p => {
+    p.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    p.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

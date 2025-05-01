@@ -37,11 +37,11 @@ namespace locadora_de_carros.Services
             carroExistente.Ano = carro.Ano;
             carroExistente.Marca = carro.Marca;
 
-            if (carroExistente is null) 
-                    throw new CarrosException();
+            if (carroExistente is null)
+                throw new CarrosException();
 
             carrosRepository.Update(carroExistente);
-                                                                                                                                        
+
             return mapper.Map<CarroDTO>(carroExistente);
 
         }
