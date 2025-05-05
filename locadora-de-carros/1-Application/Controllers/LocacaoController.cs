@@ -19,11 +19,14 @@ namespace locadora_de_carros.Application.Controllers
             this.locacaoService = locacaoService;
         }
 
+        // Calcula o valor de uma locação com base nas regras do sistema.
+        // Rota: POST /calcular
         [HttpPost("/calcular")]
         public ActionResult<RelatorioDTOResponse> Create([FromBody] LocacaoDTORequest locacaoBody)
         {
             try
             {
+                // Chama o serviço para calcular o relatório da locação
                 RelatorioDTOResponse relatorioResponse = locacaoService.Calcular(locacaoBody);
                 return relatorioResponse;
             }catch(CarrosException ex)

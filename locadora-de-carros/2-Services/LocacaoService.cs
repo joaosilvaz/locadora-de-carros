@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace locadora_de_carros._2_Services
 {
+    // Serviço responsável por calcular o valor da locação de um carro.
     public class LocacaoService : ILocacaoService
     {
         private readonly IMapper mapper;
@@ -20,11 +21,13 @@ namespace locadora_de_carros._2_Services
             this.carroService = carroService;
         }
 
+        // Calcula o valor da locação com base na data de início e fim e aplica descontos conforme o período.
         public RelatorioDTOResponse Calcular(LocacaoDTORequest locacaoBody)
         {
             DateTime dataInicio = locacaoBody.DataInicio;
             DateTime dataFim = locacaoBody.DataFim;
 
+            // Busca os dados do carro pelo ID e converte para a entidade
             CarroEntity carro = mapper.Map<CarroEntity>(carroService.GetById(locacaoBody.CarroId));
 
             if (carro is null)
@@ -45,6 +48,7 @@ namespace locadora_de_carros._2_Services
                 valorFinal = subtotal - ((subtotal / 100) * PorcentagemDesconto);
             }
 
+            // Monta o relatório de resposta com os dados calculados
             var relatorio = new RelatorioDTOResponse()
             {
                 Carro = carro.Modelo!,

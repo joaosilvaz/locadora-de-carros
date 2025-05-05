@@ -2,6 +2,7 @@
 
 namespace locadora_de_carros.Domain.Entities.Pattern
 {
+    // Serve como base para outras entidades
     public abstract class BaseEntity
     {
         [Key]

@@ -17,12 +17,16 @@ namespace locadora_de_carros.Application.Controllers
             this.carroService = carroService;
         }
 
+        // Retorna todos os carros cadastrados. 
+        // GET /carro
         [HttpGet]
         public ActionResult<IEnumerable<CarroDTO>> GetAll()
         {
             return Ok(carroService.GetAll());
         }
 
+        // Retorna um carro pelo ID.
+        // GET /carro/{id}
         [HttpGet("{id:int:min(1)}")]
         public IActionResult GetId(int id)
         {
@@ -44,6 +48,8 @@ namespace locadora_de_carros.Application.Controllers
             }
         }
 
+        // Cadastra um novo carro.
+        // POST /carro
         [HttpPost]
         public ActionResult<CarroDTO> Post([FromBody] CarroDTO entidade)
         {
@@ -54,6 +60,8 @@ namespace locadora_de_carros.Application.Controllers
             return Created();
         }
 
+        // Atualiza um carro existente.
+        // PUT /carro/{id}
         [HttpPut("{id:int:min(1)}")]
         public ActionResult<CarroDTO> Put(int id, CarroDTO t)
         {
@@ -72,6 +80,8 @@ namespace locadora_de_carros.Application.Controllers
             }
         }
 
+        // Remove um carro pelo ID.
+        // DELETE /carro/{id}
         [HttpDelete("{id:int:min(1)}")]
         public ActionResult<CarroDTO> Delete(int id)
         {

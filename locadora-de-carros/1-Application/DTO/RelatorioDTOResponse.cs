@@ -1,5 +1,6 @@
 ﻿namespace locadora_de_carros._1_Application.Controllers
 {
+    // DTO de resposta que representa o relatório final da locação.
     public class RelatorioDTOResponse
     {
         public string Carro { get; set; }
