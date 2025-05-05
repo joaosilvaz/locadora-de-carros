@@ -13,7 +13,6 @@ Este projeto foi desenvolvido como parte da avaliação CP2 da disciplina de Des
 - Visual Studio
 - Postman (para testes)
 - Swagger
-- 
 ---
 
 ## 🎯 Funcionalidades
