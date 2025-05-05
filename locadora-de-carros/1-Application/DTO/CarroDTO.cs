@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace locadora_de_carros.Application.DTO
 {
+    // DTO (Data Transfer Object) utilizado para representar os dados de um carro.
     public class CarroDTO
     {
         [Required(ErrorMessage = "O modelo é obrigatório.")]

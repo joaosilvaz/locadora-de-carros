@@ -4,8 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace locadora_de_carros.Domain.Entities
 {
-
-
+    // Entidade que representa a tabela de carros no banco de dados.
     [Table("TB_CARRO")]
     public class CarroEntity : BaseEntity
     {

@@ -7,6 +7,7 @@ using locadora_de_carros.Services.Exceptions;
 
 namespace locadora_de_carros.Services
 {
+    // Implementação da lógica de negócio relacionada aos carros.
     public class CarroService : ICarroService
     {
         private readonly ICarrosRepository carrosRepository;
